@@ -76,5 +76,12 @@ public class CdrRecordController {
 
             return "Error (or) Uploading File Filed : " + exception.getMessage();
         }
+
+   }
+
+   @GetMapping("/reseller/{name}")
+   public Double getResellerBill(@PathVariable String name){
+
+        return cdrRecordsService.caluculateReSellerBill(name);
    }
 }

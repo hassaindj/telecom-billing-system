@@ -61,6 +61,29 @@ public class CdrRecordsService {
         return billingResponseDTO;
     }
 
+    public Double caluculateReSellerBill(String resellerName){
+
+        List<CdrRecords> cdrRecordsList = cdrRecordsRepository.findByResellerName(resellerName);
+
+        double totalBill = 0;
+
+        for(CdrRecords cdrRecords : cdrRecordsList){
+
+            double callCharges = cdrRecords.getDurationSeconds() * 0.50;
+
+            double smsCharges = cdrRecords.getSmsCount() * 0.10;
+
+            double datacharge = cdrRecords.getDataUsageMb() * 0.05;
+
+            totalBill += callCharges + smsCharges + datacharge;
+
+        }
+
+    return totalBill;
+
+    }
+
+
 
 
 }
